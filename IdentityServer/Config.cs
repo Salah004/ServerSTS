@@ -38,7 +38,6 @@ namespace IdentityServer
                         "api1"
                     },
                     AllowOfflineAccess = true
-
                 }
                 ,
                 new Client

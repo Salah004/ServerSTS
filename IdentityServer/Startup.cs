@@ -30,7 +30,6 @@ namespace IdentityServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //var authUrl = "http://localhost:5000";
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -38,24 +37,7 @@ namespace IdentityServer
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            #region Validation Settings
-            /*
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(options =>
-            {
-                options.Authority = authUrl;
-                options.RequireHttpsMetadata = false;
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidIssuer = authUrl,
-                    ValidateAudience = false,
-                    ValidAudience = "http://www.anem.dz/",//test purposes
-                    ValidateLifetime = true,
-                };
-            });
-            */
-            #endregion
+          
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
