@@ -1,4 +1,5 @@
 ﻿using IdentityServer.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace IdentityServer.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -17,7 +18,22 @@ namespace IdentityServer.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.HasDefaultSchema("auth");
             base.OnModelCreating(builder);
         }
     }
+
+    /*public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+  
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {         
+            builder.HasDefaultSchema("auth");
+            base.OnModelCreating(builder);
+        }
+    }*/
 }
